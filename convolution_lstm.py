@@ -65,7 +65,8 @@ class ConvLSTM(nn.Module):
 
     def forward(self, input, hidden_state=None):
         """
-        
+        Partially adapted code from
+        https://github.com/ndrplz/ConvLSTM_pytorch/blob/master/convlstm.py
         Parameters
         ----------
         input_tensor: todo 
