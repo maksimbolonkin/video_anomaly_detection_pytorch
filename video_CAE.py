@@ -28,5 +28,10 @@ class VideoAutoencoderLSTM(nn.Module):
         x, _ = self.rnn_enc_dec(x)
         x = x.view(b*t, x.size(2), x.size(3), x.size(4))
         x = self.conv_decoder(x)
-        x = x.view(b, t, x.size(2), x.size(3), x.size(4))
+        x = x.view(b, t, x.size(1), x.size(2), x.size(3))
         return x
+
+    def set_cuda(self):
+        self.conv_encoder.cuda()
+        self.rnn_enc_dec.cuda()
+        self.conv_decoder.cuda()
