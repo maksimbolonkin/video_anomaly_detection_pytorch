@@ -12,7 +12,12 @@ class VideoAutoencoderLSTM(nn.Module):
               ('conv2', nn.Conv2d(in_channels=128, out_channels=64, kernel_size=5,stride=2, padding=0)),
               ('nonl2', nn.Tanh())
             ]))
-        self.rnn_enc_dec = ConvLSTM(input_channels=64, hidden_channels=[64, 32, 64], kernel_size=3, batch_first=True)
+        self.rnn_enc_dec = ConvLSTM(input_channels=64,
+                        hidden_channels=[64, 32, 64],
+                        kernel_size=3,
+                        batch_first=True,
+                        input_dropout_rate=0.5,
+                        reccurent_dropout_rate=0.5)
         self.conv_decoder = nn.Sequential(OrderedDict([
               ('deconv1', nn.ConvTranspose2d(in_channels=64, out_channels=128, kernel_size=5,stride=2, padding=0)),
               ('nonl1', nn.Tanh()),
